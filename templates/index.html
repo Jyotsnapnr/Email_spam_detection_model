@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spam Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            text-align: center;
+            padding: 40px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+            margin-bottom: 15px;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .spam {
+            background: #ffcccc;
+            color: #a10000;
+        }
+        .ham {
+            background: #ccffcc;
+            color: #006600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Email Spam Detector</h2>
+        <form method="POST" action="/predict">
+            <textarea name="text" placeholder="Paste your email text here..."></textarea>
+            <br>
+            <button type="submit">Check</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result {% if 'Spam' in prediction %}spam{% else %}ham{% endif %}">
+            <p><b>Text:</b> {{ text }}</p>
+            <p><b>Prediction:</b> {{ prediction }}</p>
+            <p><b>Confidence:</b> {{ confidence }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

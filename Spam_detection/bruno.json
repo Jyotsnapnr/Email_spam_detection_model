@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Spam_detection",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
